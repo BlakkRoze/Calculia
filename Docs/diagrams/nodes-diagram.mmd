@@ -1,0 +1,64 @@
+---
+title: Calculia - Nodes
+---
+classDiagram
+    class BigFrac {
+        +BigInteger top
+        +BigInteger bottom
+    }
+    note for NodeSubscriber "Nodes subscribe to other nodes - Observer"
+    class NodeSubscriber {
+        <<interface>>
+        +void update()
+    }
+    NodeSubscriber <.. Node
+    NodeSubscriber --o Node
+    class Node{
+        <<abstract>>
+        +int id
+        -boolean evaluated
+        -BigFrac value
+        +void evaluate()
+        +BigFrac getValue()
+    }
+    note for ValNode "Atom for composing nodes - Composite"
+    Node <|-- ValNode
+    BigFrac --o ValNode
+    class ValNode{
+        +BigFrac value
+    }
+    Node <|-- AddNode
+    class AddNode{
+        +Node left
+        +Node right
+    }
+    Node <|-- SubNode
+    class SubNode{
+        +Node left
+        +Node right
+    }
+    Node <|-- MulNode
+    class MulNode{
+        +Node left
+        +Node right
+    }
+    Node <|-- DivNode
+    class DivNode{
+        +Node left
+        +Node right
+    }
+    Node <|-- MinNode
+    class MinNode{
+        +Node left
+        +Node right
+    }
+    note for MaxNode "Node containing other nodes - Composite"
+    Node <|-- MaxNode
+    class MaxNode{
+        +Node left
+        +Node right
+    }
+    Node <|-- NegNode
+    class NegNode{
+        +Node operand
+    }

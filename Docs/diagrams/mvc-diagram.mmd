@@ -1,0 +1,45 @@
+---
+title: Calculia - MVC
+---
+
+classDiagram 
+    namespace Controller {
+        class MainWindowController
+        class NodegraphController
+        class NodeCreationController
+    }
+    namespace View {
+        class Button
+    }
+    namespace Model {
+        class NodeContainerrr
+        class Node
+    }
+    MainWindowController --> Button : contains
+    MainWindowController --> NodeCreationController : opens
+    class MainWindowController {
+        +void addNode()
+        +void evaluate()
+    }
+    MainWindowController --> NodegraphController : contains
+    NodegraphController --> NodeContainerrr : uses
+    class NodegraphController {
+    }
+    NodeCreationController --> Button : contains
+    class NodeCreationController {
+        +void submit()
+    }
+    class NodeContainerrr {
+        +Node get(int ID)
+        +void add(Node node)
+        +void del(int ID)
+    }
+    Node --o NodeContainerrr
+    class Node {
+        +int id
+        -boolean evaluated
+        -BigFrac value
+        +void evaluate()
+        +BigFrac getValue()
+    }
+    
