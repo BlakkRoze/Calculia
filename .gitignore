@@ -1,1 +1,11 @@
 target
+src/main/resources/org/blakkroze/calculia/nodelist/update.sh
+src/main/java/org/blakkroze/calculia/views/AddNodeView.java
+src/main/java/org/blakkroze/calculia/views/SubNodeView.java
+src/main/java/org/blakkroze/calculia/views/MulNodeView.java
+src/main/java/org/blakkroze/calculia/views/DivNodeView.java
+src/main/java/org/blakkroze/calculia/views/MinNodeView.java
+src/main/java/org/blakkroze/calculia/views/MaxNodeView.java
+src/main/java/org/blakkroze/calculia/views/NegNodeView.java
+src/main/java/org/blakkroze/calculia/views/update.sh
+src/main/java/org/blakkroze/calculia/controllers/update.sh

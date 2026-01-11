@@ -27,6 +27,8 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <fx:include source="nodelist/node-list-view.fxml" />
+      </StackPane>
    </children>
 </VBox>
