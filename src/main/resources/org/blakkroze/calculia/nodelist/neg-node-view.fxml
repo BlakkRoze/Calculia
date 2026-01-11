@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <HBox alignment="CENTER_LEFT" 
 maxHeight="-Infinity" 
-maxWidth="-Infinity" 
 spacing="10.0" 
 xmlns="http://javafx.com/javafx/25" 
 xmlns:fx="http://javafx.com/fxml/1"
@@ -26,14 +26,14 @@ fx:controller="org.blakkroze.calculia.controllers.NegNodeController">
       </StackPane>
       <HBox alignment="CENTER_LEFT" spacing="5.0">
          <children>
-            <Label text="ID:" />
+            <FontIcon iconLiteral="fas-hashtag" />
             <Text fx:id="nodeId" strokeType="OUTSIDE" strokeWidth="0.0" text="?" />
          </children>
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>
       </HBox>
-      <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5.0">
+      <HBox alignment="CENTER_LEFT" spacing="5.0">
          <children>
             <Label minWidth="-Infinity" text="Node 1:" />
             <TextField fx:id="argNodeId" />
@@ -41,10 +41,11 @@ fx:controller="org.blakkroze.calculia.controllers.NegNodeController">
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>
-         </HBox>
+      </HBox>
+      <Region maxWidth="Infinity" HBox.hgrow="ALWAYS" />
       <HBox alignment="CENTER_LEFT" spacing="5.0">
          <children>
-            <Label text="Value:" />
+            <FontIcon iconLiteral="fas-equals" />
             <Text fx:id="nodeResult" strokeType="OUTSIDE" strokeWidth="0.0" text="?" />
          </children>
          <padding>

@@ -20,7 +20,7 @@ public class NegNodeController {
     }
 
     public void setArgNode(Node node) {
-        nodeId.setText(node.getId());
+        argNodeId.setText(node.getId());
     }
 
     public void setValue(String value) {
