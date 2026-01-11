@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <children>
+            <Label text="Operation" />
+            <ComboBox prefWidth="150.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <HBox spacing="10">
+                        <FontIcon iconLiteral="fas-plus" />
+                        <Label text="Add"/>
+                     </HBox>
+                     <HBox spacing="10">
+                        <FontIcon iconLiteral="fas-minus" />
+                        <Label text="Subtract"/>
+                     </HBox>
+                     <HBox spacing="10">
+                        <FontIcon iconLiteral="fas-times" />
+                        <Label text="Multiply"/>
+                     </HBox>
+                     <HBox spacing="10">
+                        <FontIcon iconLiteral="fas-divide" />
+                        <Label text="Divide"/>
+                     </HBox>
+                     <HBox spacing="10">
+                        <FontIcon iconLiteral="fas-angles-double-down" />
+                        <Label text="Minimum"/>
+                     </HBox>
+                     <HBox spacing="10">
+                        <FontIcon iconLiteral="fas-angles-double-up" />
+                        <Label text="Maximum"/>
+                     </HBox>
+                     <HBox spacing="10">
+                        <FontIcon iconLiteral="fas-minus" />
+                        <Label text="Negation"/>
+                     </HBox>
+                  </FXCollections>
+               </items>
+            </ChoiceBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
