@@ -14,6 +14,7 @@
         <junit.version>6.0.2</junit.version>
         <javafx.version>25.0.1</javafx.version>
         <java.version>25</java.version>
+        <ikonli.version>12.4.0</ikonli.version>
     </properties>
 
     <dependencies>
@@ -52,6 +53,23 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- Nerd font icons in GUI -->
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-core</artifactId>
+            <version>${ikonli.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>${ikonli.version}</version> <!-- Use the latest version -->
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-fontawesome5-pack</artifactId>
+            <version>${ikonli.version}</version> <!-- Must match the other versions -->
         </dependency>
 
     </dependencies>
