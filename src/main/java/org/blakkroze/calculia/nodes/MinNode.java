@@ -1,12 +1,22 @@
 package org.blakkroze.calculia.nodes;
 
-public class MinNode extends Node {
+import org.blakkroze.calculia.models.BigFrac;
 
-    public Node getLeftArgNode() {
-        return new Node();
+public class MinNode extends TwoArgNode {
+
+    public MinNode(){
+        super();
     }
-    public Node getRightArgNode() {
-        return new Node();
+
+    public MinNode(Node left, Node right) {
+        super(left, right);
+    }
+
+    @Override
+    public void evaluate() {
+        BigFrac leftVal = left.getBigFracValue();
+        BigFrac rightVal = right.getBigFracValue();
+        setValue(leftVal.compareTo(rightVal) <= 0 ? leftVal : rightVal);
     }
 
 }

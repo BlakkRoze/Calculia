@@ -20,6 +20,10 @@ public class NegNodeController {
     }
 
     public void setArgNode(Node node) {
+        if(node == null){
+            argNodeId.setText("");
+            return;
+        }
         argNodeId.setText(node.getId());
     }
 

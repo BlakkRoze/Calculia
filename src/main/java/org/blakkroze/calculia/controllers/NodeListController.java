@@ -1,5 +1,6 @@
 package org.blakkroze.calculia.controllers;
 
+import org.blakkroze.calculia.models.BigFrac;
 import org.blakkroze.calculia.nodes.Node;
 import org.blakkroze.calculia.nodes.AddNode;
 import org.blakkroze.calculia.nodes.SubNode;
@@ -8,6 +9,7 @@ import org.blakkroze.calculia.nodes.DivNode;
 import org.blakkroze.calculia.nodes.MinNode;
 import org.blakkroze.calculia.nodes.MaxNode;
 import org.blakkroze.calculia.nodes.NegNode;
+import org.blakkroze.calculia.nodes.ValNode;
 
 import org.blakkroze.calculia.views.NodeView;
 
@@ -32,6 +34,7 @@ public class NodeListController {
         nodes.add(new MinNode());
         nodes.add(new MaxNode());
         nodes.add(new NegNode());
+        nodes.add(new ValNode(new BigFrac(2137,1)));
 
         nodeListView.setItems(nodes);
         nodeListView.setCellFactory(_ -> new NodeView());

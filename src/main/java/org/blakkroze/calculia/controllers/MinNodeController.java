@@ -22,10 +22,18 @@ public class MinNodeController {
     }
 
     public void setLeftArgNode(Node node) {
+        if( node == null ){
+            leftArgNodeId.setText("");
+            return;
+        }
         leftArgNodeId.setText(node.getId());
     }
 
     public void setRightArgNode(Node node) {
+        if( node == null ){
+            rightArgNodeId.setText("");
+            return;
+        }
         rightArgNodeId.setText(node.getId());
     }
 
