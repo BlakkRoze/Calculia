@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<HBox spacing="10">
+   <StackPane prefWidth="20">
+      <FontIcon iconLiteral="fas-angle-double-up" />
+   </StackPane>
+   <Label text="Maximum"/>
+</HBox>
+
