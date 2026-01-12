@@ -9,3 +9,4 @@ src/main/java/org/blakkroze/calculia/views/MaxNodeView.java
 src/main/java/org/blakkroze/calculia/views/NegNodeView.java
 src/main/java/org/blakkroze/calculia/views/update.sh
 src/main/java/org/blakkroze/calculia/controllers/update.sh
+.idea
