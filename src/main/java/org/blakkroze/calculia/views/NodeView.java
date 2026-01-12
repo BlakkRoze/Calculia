@@ -1,8 +1,23 @@
 package org.blakkroze.calculia.views;
 
-import org.blakkroze.calculia.controllers.*;
+import org.blakkroze.calculia.controllers.AddNodeController;
+import org.blakkroze.calculia.controllers.SubNodeController;
+import org.blakkroze.calculia.controllers.MulNodeController;
+import org.blakkroze.calculia.controllers.DivNodeController;
+import org.blakkroze.calculia.controllers.MinNodeController;
+import org.blakkroze.calculia.controllers.MaxNodeController;
+import org.blakkroze.calculia.controllers.NegNodeController;
+import org.blakkroze.calculia.controllers.ValNodeController;
 
-import org.blakkroze.calculia.nodes.*;
+import org.blakkroze.calculia.nodes.Node;
+import org.blakkroze.calculia.nodes.AddNode;
+import org.blakkroze.calculia.nodes.SubNode;
+import org.blakkroze.calculia.nodes.MulNode;
+import org.blakkroze.calculia.nodes.DivNode;
+import org.blakkroze.calculia.nodes.MinNode;
+import org.blakkroze.calculia.nodes.MaxNode;
+import org.blakkroze.calculia.nodes.NegNode;
+import org.blakkroze.calculia.nodes.ValNode;
 
 import javafx.scene.control.ListCell;
 import javafx.scene.Parent;
