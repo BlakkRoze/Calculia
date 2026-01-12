@@ -3,3 +3,4 @@ recycle
 src/main/resources/org/blakkroze/calculia/nodelist/update.sh
 src/main/java/org/blakkroze/calculia/views/update.sh
 src/main/java/org/blakkroze/calculia/controllers/update.sh
+.idea
