@@ -1,12 +1,22 @@
 package org.blakkroze.calculia.nodes;
 
-public class MaxNode extends Node {
+import org.blakkroze.calculia.models.BigFrac;
 
-    public Node getLeftArgNode() {
-        return new Node();
+public class MaxNode extends TwoArgNode {
+
+    public MaxNode(){
+        super();
     }
-    public Node getRightArgNode() {
-        return new Node();
+
+    public MaxNode(Node left, Node right) {
+        super(left, right);
+    }
+
+    @Override
+    public void evaluate() {
+        BigFrac leftVal = left.getBigFracValue();
+        BigFrac rightVal = right.getBigFracValue();
+        setValue(leftVal.compareTo(rightVal) >= 0 ? leftVal : rightVal);
     }
 
 }

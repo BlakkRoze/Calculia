@@ -7,6 +7,7 @@ import org.blakkroze.calculia.controllers.DivNodeController;
 import org.blakkroze.calculia.controllers.MinNodeController;
 import org.blakkroze.calculia.controllers.MaxNodeController;
 import org.blakkroze.calculia.controllers.NegNodeController;
+import org.blakkroze.calculia.controllers.ValNodeController;
 
 import org.blakkroze.calculia.nodes.Node;
 import org.blakkroze.calculia.nodes.AddNode;
@@ -16,6 +17,7 @@ import org.blakkroze.calculia.nodes.DivNode;
 import org.blakkroze.calculia.nodes.MinNode;
 import org.blakkroze.calculia.nodes.MaxNode;
 import org.blakkroze.calculia.nodes.NegNode;
+import org.blakkroze.calculia.nodes.ValNode;
 
 import javafx.scene.control.ListCell;
 import javafx.scene.Parent;
@@ -39,6 +41,8 @@ public class NodeView extends ListCell<Node> {
     MaxNodeController maxController;
     private final Parent negGraphicContainer;
     NegNodeController negController;
+    private final Parent valGraphicContainer;
+    ValNodeController valController;
 
     public NodeView() {
 
@@ -49,7 +53,7 @@ public class NodeView extends ListCell<Node> {
         FXMLLoader minNodeLoader = new FXMLLoader(getClass().getResource("../nodelist/min-node-view.fxml"));
         FXMLLoader maxNodeLoader = new FXMLLoader(getClass().getResource("../nodelist/max-node-view.fxml"));
         FXMLLoader negNodeLoader = new FXMLLoader(getClass().getResource("../nodelist/neg-node-view.fxml"));
-        
+        FXMLLoader valNodeLoader = new FXMLLoader(getClass().getResource("../nodelist/val-node-view.fxml"));
         try {
             addGraphicContainer = addNodeLoader.load();
             addController = addNodeLoader.getController();
@@ -65,6 +69,8 @@ public class NodeView extends ListCell<Node> {
             maxController = maxNodeLoader.getController();
             negGraphicContainer = negNodeLoader.load();
             negController = negNodeLoader.getController();
+            valGraphicContainer = valNodeLoader.load();
+            valController = valNodeLoader.getController();
         }
         catch (IOException e) {
             throw new RuntimeException("NodeView: Could not load the FXMLs", e);
@@ -88,7 +94,11 @@ public class NodeView extends ListCell<Node> {
                 addController.setId(node.getId());
                 addController.setLeftArgNode(addNode.getLeftArgNode());
                 addController.setRightArgNode(addNode.getRightArgNode());
-                addController.setValue(node.getValue());
+                if( addNode.getLeftArgNode() == null || addNode.getRightArgNode() == null ){
+                    addController.setValue("");
+                } else {
+                    addController.setValue(node.getValue());
+                }
                 setGraphic(addGraphicContainer);
             }
 
@@ -96,7 +106,11 @@ public class NodeView extends ListCell<Node> {
                 subController.setId(node.getId());
                 subController.setLeftArgNode(subNode.getLeftArgNode());
                 subController.setRightArgNode(subNode.getRightArgNode());
-                subController.setValue(node.getValue());
+                if( subNode.getLeftArgNode() == null || subNode.getRightArgNode() == null ){
+                    subController.setValue("");
+                } else {
+                    subController.setValue(node.getValue());
+                }
                 setGraphic(subGraphicContainer);
             }
 
@@ -104,7 +118,11 @@ public class NodeView extends ListCell<Node> {
                 mulController.setId(node.getId());
                 mulController.setLeftArgNode(mulNode.getLeftArgNode());
                 mulController.setRightArgNode(mulNode.getRightArgNode());
-                mulController.setValue(node.getValue());
+                if( mulNode.getLeftArgNode() == null || mulNode.getRightArgNode() == null ){
+                    mulController.setValue("");
+                } else {
+                    mulController.setValue(node.getValue());
+                }
                 setGraphic(mulGraphicContainer);
             }
 
@@ -112,7 +130,11 @@ public class NodeView extends ListCell<Node> {
                 divController.setId(node.getId());
                 divController.setLeftArgNode(divNode.getLeftArgNode());
                 divController.setRightArgNode(divNode.getRightArgNode());
-                divController.setValue(node.getValue());
+                if( divNode.getLeftArgNode() == null || divNode.getRightArgNode() == null ){
+                    divController.setValue("");
+                } else {
+                    divController.setValue(node.getValue());
+                }
                 setGraphic(divGraphicContainer);
             }
 
@@ -120,7 +142,11 @@ public class NodeView extends ListCell<Node> {
                 minController.setId(node.getId());
                 minController.setLeftArgNode(minNode.getLeftArgNode());
                 minController.setRightArgNode(minNode.getRightArgNode());
-                minController.setValue(node.getValue());
+                if( minNode.getLeftArgNode() == null || minNode.getRightArgNode() == null ){
+                    minController.setValue("");
+                } else {
+                    minController.setValue(node.getValue());
+                }
                 setGraphic(minGraphicContainer);
             }
 
@@ -128,15 +154,29 @@ public class NodeView extends ListCell<Node> {
                 maxController.setId(node.getId());
                 maxController.setLeftArgNode(maxNode.getLeftArgNode());
                 maxController.setRightArgNode(maxNode.getRightArgNode());
-                maxController.setValue(node.getValue());
+                if( maxNode.getLeftArgNode() == null || maxNode.getRightArgNode() == null ){
+                    maxController.setValue("");
+                } else {
+                    maxController.setValue(node.getValue());
+                }
                 setGraphic(maxGraphicContainer);
             }
 
             if (node instanceof NegNode negNode) {
                 negController.setId(node.getId());
                 negController.setArgNode(negNode.getArgNode());
-                negController.setValue(node.getValue());
+                if( negNode.getArgNode() == null ){
+                    negController.setValue("");
+                } else {
+                    negController.setValue(node.getValue());
+                }
                 setGraphic(negGraphicContainer);
+            }
+
+            if (node instanceof ValNode valNode) {
+                valController.setId(node.getId());
+                valController.setValue(node.getValue());
+                setGraphic(valGraphicContainer);
             }
 
         }

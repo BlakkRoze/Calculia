@@ -1,9 +1,18 @@
 package org.blakkroze.calculia.nodes;
 
-public class NegNode extends Node {
+public class NegNode extends SingleArgNode {
 
-    public Node getArgNode() {
-        return new Node();
+    public NegNode() {
+        super();
+    }
+
+    public NegNode(Node father) {
+        super(father);
+    }
+
+    @Override
+    public void evaluate() {
+        setValue(father.getBigFracValue().negate());
     }
 
 }
