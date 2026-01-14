@@ -8,6 +8,8 @@ import org.blakkroze.calculia.nodes.DivNode;
 import org.blakkroze.calculia.nodes.MinNode;
 import org.blakkroze.calculia.nodes.MaxNode;
 import org.blakkroze.calculia.nodes.NegNode;
+import org.blakkroze.calculia.nodes.SingleArgNode;
+import org.blakkroze.calculia.nodes.TwoArgNode;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,8 @@ public class NewNodeController {
 
     @FXML
     ComboBox<Node> operationComboBox;
+
+    OperationSettingsController operationSettingsController;
 
     @FXML
     public void initialize() {
@@ -110,12 +114,12 @@ public class NewNodeController {
         String layoutPath = "";
 
         Node val = operationComboBox.getValue();
-        if (val instanceof AddNode || val instanceof SubNode || val instanceof MulNode || val instanceof DivNode || val instanceof MinNode || val instanceof MaxNode) {
+        if (val instanceof TwoArgNode) {
 
             layoutPath = "../newnode/binary-operation-settings.fxml";
 
         }
-        else if (val instanceof NegNode) {
+        else if (val instanceof SingleArgNode) {
 
             layoutPath = "../newnode/unary-operation-settings.fxml";
 
@@ -127,6 +131,7 @@ public class NewNodeController {
         }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(layoutPath));
+        operationSettingsController = loader.getController();
 
         try {
             Parent parent = loader.load();
@@ -140,6 +145,16 @@ public class NewNodeController {
         Stage stage = (Stage) ((ComboBox) event.getSource()).getScene().getWindow();
         stage.sizeToScene();
 
+    }
+
+    public Node getNode() {
+
+        Node result = operationComboBox.getValue();
+        
+        operationSettingsController.getNode(result);
+        
+        return result; 
+               
     }
 
 }

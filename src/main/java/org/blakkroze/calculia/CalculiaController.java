@@ -39,6 +39,9 @@ public class CalculiaController {
 
         addNodeWindow.showAndWait();
 
+        NewNodeController newNodeController = loader.getController();
+        newNodeController.getNode();
+
     }
 
 }

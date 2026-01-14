@@ -10,19 +10,20 @@
       minWidth="-Infinity"
       xmlns="http://javafx.com/javafx/25"
       xmlns:fx="http://javafx.com/fxml/1"
-      spacing="10.0">
+      spacing="10.0"
+      fx:controller="org.blakkroze.calculia.controllers.UnaryOperationSettingsController">
    <HBox alignment="CENTER_LEFT" spacing="10.0">
       <children>
          <Label text="Node ID:" />
          <Region HBox.hgrow="ALWAYS"/>
-         <TextField prefWidth="150.0" />
+         <TextField fx:id="nodeIdField" prefWidth="150.0" />
       </children>
    </HBox>
    <HBox alignment="CENTER_LEFT" spacing="10.0">
       <children>
          <Label text="Input ID:" />
          <Region HBox.hgrow="ALWAYS"/>
-         <TextField prefWidth="150.0" />
+         <TextField fx:id="inputIdField" prefWidth="150.0" />
       </children>
    </HBox>
 </VBox>
