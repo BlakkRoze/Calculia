@@ -28,7 +28,7 @@
          </padding>
       </HBox>
       <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-         <fx:include source="nodelist/node-list-view.fxml" />
+         <fx:include fx:id="nodeList" source="nodelist/node-list-view.fxml" />
       </StackPane>
    </children>
 </VBox>

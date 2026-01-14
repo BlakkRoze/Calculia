@@ -1,5 +1,6 @@
 package org.blakkroze.calculia.controllers;
 
+import org.blakkroze.calculia.containers.NodeContainer;
 import org.blakkroze.calculia.nodes.Node;
 import org.blakkroze.calculia.nodes.AddNode;
 import org.blakkroze.calculia.nodes.SubNode;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.Alert;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -29,7 +31,15 @@ public class NewNodeController {
     @FXML
     ComboBox<Node> operationComboBox;
 
+    NodeContainer container;
     OperationSettingsController operationSettingsController;
+    Node result = null;
+
+    public void setContainer(NodeContainer container) {
+    
+        this.container = container;
+
+    }
 
     @FXML
     public void initialize() {
@@ -131,7 +141,6 @@ public class NewNodeController {
         }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(layoutPath));
-        operationSettingsController = loader.getController();
 
         try {
             Parent parent = loader.load();
@@ -142,19 +151,49 @@ public class NewNodeController {
             throw new RuntimeException("NewNodeController: Could not load FXML", e);
         }
 
+        operationSettingsController = loader.getController();
+
         Stage stage = (Stage) ((ComboBox) event.getSource()).getScene().getWindow();
         stage.sizeToScene();
 
     }
 
-    public Node getNode() {
+    @FXML
+    public void handleOk(ActionEvent event) {
 
-        Node result = operationComboBox.getValue();
+        Node resultWannabe = operationComboBox.getValue();
         
-        operationSettingsController.getNode(result);
-        
-        return result; 
+        if ((resultWannabe) == null) {
+            showOperationNotSet();
+            return;
+        }
+
+        operationSettingsController.setContainer(container);        
+
+        if (operationSettingsController.fillNode(resultWannabe)) {
+
+            result = resultWannabe;
+            Stage stage = (Stage) settingsPane.getScene().getWindow();
+            stage.close();
+
+        }
                
+    }
+
+    public void showOperationNotSet() {
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Operation not set");
+        alert.setContentText("Operation for the new node has not been chosen!");
+        alert.showAndWait();
+
+    }
+
+    public Node getResult() {
+
+        return result;
+
     }
 
 }

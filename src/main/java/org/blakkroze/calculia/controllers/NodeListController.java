@@ -1,5 +1,6 @@
 package org.blakkroze.calculia.controllers;
 
+import org.blakkroze.calculia.containers.NodeContainer;
 import org.blakkroze.calculia.models.BigFrac;
 import org.blakkroze.calculia.nodes.Node;
 import org.blakkroze.calculia.nodes.AddNode;
@@ -23,21 +24,38 @@ public class NodeListController {
     @FXML
     public ListView<Node> nodeListView;
 
+    private NodeContainer nodes = new NodeContainer();
+    private ObservableList<Node> observableNodes;
+
     @FXML
     public void initialize() {
 
-        ObservableList<Node> nodes = FXCollections.observableArrayList();
-        nodes.add(new AddNode());
-        nodes.add(new SubNode());
-        nodes.add(new MulNode());
-        nodes.add(new DivNode());
-        nodes.add(new MinNode());
-        nodes.add(new MaxNode());
-        nodes.add(new NegNode());
-        nodes.add(new ValNode(new BigFrac(2137,1)));
+        observableNodes = FXCollections.observableArrayList();
 
-        nodeListView.setItems(nodes);
+        ValNode valNode1 = new ValNode(new BigFrac(2137,2));
+        valNode1.setId(1);
+
+        ValNode valNode2 = new ValNode(new BigFrac(2137,1));
+        valNode2.setId(2);
+
+        addNode(valNode1);
+        addNode(valNode2);
+
+        nodeListView.setItems(observableNodes);
         nodeListView.setCellFactory(_ -> new NodeView());
+
+    }
+
+    public void addNode(Node node) {
+
+        nodes.add(node);
+        observableNodes.add(node);
+
+    }
+    
+    public NodeContainer getNodes() {
+
+        return nodes;
 
     }
 

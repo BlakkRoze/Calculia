@@ -14,6 +14,12 @@ import java.io.IOException;
 public class CalculiaController {
 
     @FXML
+    public Parent nodeList;
+    @FXML
+    public NodeListController nodeListController;
+
+
+    @FXML
     public void handleAddNode(ActionEvent event) {
 
         Node sourceNode = (Node) event.getSource();
@@ -36,11 +42,11 @@ public class CalculiaController {
             throw new RuntimeException("CalculiaController: Could not load the FXMLs", e);
         }
 
-
+        NewNodeController newNodeController = loader.getController();
+        newNodeController.setContainer(nodeListController.getNodes());
         addNodeWindow.showAndWait();
 
-        NewNodeController newNodeController = loader.getController();
-        newNodeController.getNode();
+        if (newNodeController.getResult() != null) nodeListController.addNode(newNodeController.getResult());
 
     }
 
