@@ -6,16 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Node implements NodeSubscriber {
-    private static int nextId = 1;
     private int id;
     private boolean evaluated;
     private BigFrac value;
     private List<NodeSubscriber> subscribers;
 
     public Node() {
-        this.id = nextId++;
         this.evaluated = false;
         this.subscribers = new ArrayList<>();
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getId() { return String.valueOf(id); }
