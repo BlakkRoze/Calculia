@@ -1,12 +1,18 @@
 package org.blakkroze.calculia.nodes;
 
-public class AddNode extends Node {
+public class AddNode extends TwoArgNode {
 
-    public Node getLeftArgNode() {
-        return new Node();
+    public AddNode(){
+        super();
     }
-    public Node getRightArgNode() {
-        return new Node();
+
+    public AddNode(Node left, Node right) {
+        super(left, right);
+    }
+
+    @Override
+    public void evaluate() {
+        setValue(left.getBigFracValue().add(right.getBigFracValue()));
     }
 
 }
