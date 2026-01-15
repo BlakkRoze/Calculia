@@ -32,17 +32,7 @@ public abstract class Node implements NodeSubscriber {
 
     public String getValue() {
         if (!evaluated) {
-            try {
-                evaluate();
-            } catch (Exception e) {
-                errorMessage = e.getMessage();
-                evaluated = true;
-                return "ERROR";
-            }
-        }
-
-        if (errorMessage != null) {
-            return "ERROR";
+            return "???";
         }
 
         return value.toString();
