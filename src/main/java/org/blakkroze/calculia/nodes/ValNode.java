@@ -5,6 +5,10 @@ import org.blakkroze.calculia.models.BigFrac;
 public class ValNode extends Node {
     private BigFrac fracValue;
 
+    public ValNode() {
+        super();
+    }
+
     public ValNode(BigFrac value) {
         super();
         this.fracValue = value;

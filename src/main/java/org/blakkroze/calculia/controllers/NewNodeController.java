@@ -9,6 +9,7 @@ import org.blakkroze.calculia.nodes.DivNode;
 import org.blakkroze.calculia.nodes.MinNode;
 import org.blakkroze.calculia.nodes.MaxNode;
 import org.blakkroze.calculia.nodes.NegNode;
+import org.blakkroze.calculia.nodes.ValNode;
 import org.blakkroze.calculia.nodes.SingleArgNode;
 import org.blakkroze.calculia.nodes.TwoArgNode;
 
@@ -51,6 +52,7 @@ public class NewNodeController {
        operationComboBox.getItems().add(new MinNode());
        operationComboBox.getItems().add(new MaxNode());
        operationComboBox.getItems().add(new NegNode());
+       operationComboBox.getItems().add(new ValNode());
        
 
        operationComboBox.setCellFactory(lv -> new ListCell<Node>() {
@@ -95,6 +97,10 @@ public class NewNodeController {
                        loader = new FXMLLoader(getClass().getResource("../newnode/neg-node-combo-view.fxml"));
                    }
 
+                   else if (node instanceof ValNode valNode) {
+                       loader = new FXMLLoader(getClass().getResource("../newnode/val-node-combo-view.fxml"));
+                   }
+
                    else {
                        throw new RuntimeException("NewNodeController: Unsupported node type!");
                    }
@@ -124,6 +130,7 @@ public class NewNodeController {
         String layoutPath = "";
 
         Node val = operationComboBox.getValue();
+
         if (val instanceof TwoArgNode) {
 
             layoutPath = "../newnode/binary-operation-settings.fxml";
@@ -132,6 +139,11 @@ public class NewNodeController {
         else if (val instanceof SingleArgNode) {
 
             layoutPath = "../newnode/unary-operation-settings.fxml";
+
+        }
+        else if (val instanceof ValNode) {
+
+            layoutPath = "../newnode/value-operation-settings.fxml";
 
         }
         else {
