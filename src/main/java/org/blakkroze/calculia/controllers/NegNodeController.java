@@ -1,5 +1,6 @@
 package org.blakkroze.calculia.controllers;
 
+import javafx.scene.control.Alert;
 import org.blakkroze.calculia.containers.NodeContainer;
 import org.blakkroze.calculia.nodes.NegNode;
 import org.blakkroze.calculia.nodes.Node;
@@ -52,6 +53,7 @@ public class NegNodeController {
 
     public void onArgChanged() {
 
+        String oldValue = nodeId.getText();
         String newValue = argNodeId.getText();
 
         if (negNode == null || container == null) return;
@@ -67,15 +69,26 @@ public class NegNodeController {
             int nodeId = Integer.parseInt(newValue.trim());
             Node newArg = container.get(nodeId);
 
-            if (newArg != null && newArg != negNode) {
+            if (newArg != null) {
                 negNode.setFather(newArg);
             }
         } catch (NumberFormatException _) {
 
+        } catch (IllegalArgumentException e) {
+            showCycleError();
+            argNodeId.setText(oldValue);
         }
 
         listView.refresh();
 
+    }
+    private void showCycleError() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Cycle Error");
+        alert.setHeaderText("Circular Dependency Detected");
+        alert.setContentText("Cannot set this node as a dependency of node #" + negNode.getId() +
+                ".\nThis would create a circular reference.");
+        alert.showAndWait();
     }
 
 }

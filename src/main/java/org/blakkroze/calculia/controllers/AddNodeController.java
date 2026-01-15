@@ -1,5 +1,6 @@
 package org.blakkroze.calculia.controllers;
 
+import javafx.scene.control.Alert;
 import org.blakkroze.calculia.containers.NodeContainer;
 import org.blakkroze.calculia.nodes.AddNode;
 import org.blakkroze.calculia.nodes.Node;
@@ -61,7 +62,8 @@ public class AddNodeController {
     }
 
     public void onLeftArgChanged() {
-        
+
+        String oldValue = nodeId.getText();
         String newValue = leftArgNodeId.getText();
 
         if (currNode == null || container == null) return;
@@ -77,12 +79,15 @@ public class AddNodeController {
             int nodeId = Integer.parseInt(newValue.trim());
             Node newLeft = container.get(nodeId);
 
-            if (newLeft != null && newLeft != currNode) {
+            if (newLeft != null) {
                 currNode.setLeft(newLeft);
             }
         }
         catch (NumberFormatException _) {
 
+        } catch (IllegalArgumentException e) {
+            showCycleError();
+            leftArgNodeId.setText(oldValue);
         }
 
         listView.refresh();
@@ -91,6 +96,7 @@ public class AddNodeController {
 
     public void onRightArgChanged() {
 
+        String oldValue = nodeId.getText();
         String newValue = rightArgNodeId.getText();
 
         if (currNode == null || container == null) return;
@@ -106,16 +112,28 @@ public class AddNodeController {
             int nodeId = Integer.parseInt(newValue.trim());
             Node newRight = container.get(nodeId);
 
-            if (newRight != null && newRight != currNode) {
+            if (newRight != null) {
                 currNode.setRight(newRight);
             }
         }
         catch (NumberFormatException _) {
 
+        } catch (IllegalArgumentException e) {
+            showCycleError();
+            rightArgNodeId.setText(oldValue);
         }
 
         listView.refresh();
 
+    }
+
+    private void showCycleError() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Cycle Error");
+        alert.setHeaderText("Circular Dependency Detected");
+        alert.setContentText("Cannot set this node as a dependency of node #" + currNode.getId() +
+                ".\nThis would create a circular reference.");
+        alert.showAndWait();
     }
 
 }
