@@ -50,4 +50,10 @@ public class CalculiaController {
 
     }
 
+    public void handleEvaluation(ActionEvent event) {
+
+        nodeListController.evaluateAllNodes();
+
+    }
+
 }

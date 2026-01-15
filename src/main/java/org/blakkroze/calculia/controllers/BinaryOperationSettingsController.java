@@ -95,8 +95,8 @@ public class BinaryOperationSettingsController implements OperationSettingsContr
             return false;
         }
 
-        node.SetLeft(input1);
-        node.SetRight(input2);
+        node.setLeft(input1);
+        node.setRight(input2);
         node.setId(nodeId);
 
         return true;
