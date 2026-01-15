@@ -1,8 +1,11 @@
 package org.blakkroze.calculia.nodes;
 
 import org.blakkroze.calculia.models.BigFrac;
+import javafx.application.Platform;
 
 public class DivNode extends TwoArgNode {
+
+    private Runnable errorCallback;
 
     public DivNode(){
         super();
@@ -12,12 +15,19 @@ public class DivNode extends TwoArgNode {
         super(left, right);
     }
 
+    public void setErrorCallback(Runnable callback) {
+        this.errorCallback = callback;
+    }
+
     @Override
     public void evaluate() {
         BigFrac rightValue = right.getBigFracValue();
 
         if (rightValue.getTop().equals(java.math.BigInteger.ZERO)) {
-            throw new ArithmeticException("Division by zero: Cannot divide by zero");
+            if (errorCallback != null) {
+                Platform.runLater(errorCallback);
+            }
+            throw new ArithmeticException("Division by zero");
         }
 
         setValue(left.getBigFracValue().divide(rightValue));

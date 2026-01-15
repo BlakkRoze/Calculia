@@ -1,5 +1,6 @@
 package org.blakkroze.calculia.controllers;
 
+import javafx.scene.control.Alert;
 import org.blakkroze.calculia.nodes.Node;
 import org.blakkroze.calculia.nodes.DivNode;
 import org.blakkroze.calculia.containers.NodeContainer;
@@ -48,6 +49,7 @@ public class DivNodeController {
 
     public void setNode(DivNode node) {
         this.currNode = node;
+        node.setErrorCallback(this::showDivisionByZeroError);
     }
 
     public void setContainer(NodeContainer container) {
@@ -103,4 +105,14 @@ public class DivNodeController {
         catch (NumberFormatException _) {
         }
     }
+
+    private void showDivisionByZeroError() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Division Error");
+        alert.setHeaderText("Division by Zero");
+        alert.setContentText("Cannot divide by zero in node #" + currNode.getId() +
+                ".\nPlease change the divisor to a non-zero value.");
+        alert.showAndWait();
+    }
+
 }

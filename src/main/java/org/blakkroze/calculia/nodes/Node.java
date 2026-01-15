@@ -9,11 +9,13 @@ public abstract class Node implements NodeSubscriber {
     private int id;
     private boolean evaluated;
     private BigFrac value;
+    private String errorMessage;
     private List<NodeSubscriber> subscribers;
 
     public Node() {
         this.evaluated = false;
         this.subscribers = new ArrayList<>();
+        this.errorMessage = null;
     }
 
     public void setId(int id) {
@@ -30,8 +32,19 @@ public abstract class Node implements NodeSubscriber {
 
     public String getValue() {
         if (!evaluated) {
-            evaluate();
+            try {
+                evaluate();
+            } catch (Exception e) {
+                errorMessage = e.getMessage();
+                evaluated = true;
+                return "ERROR";
+            }
         }
+
+        if (errorMessage != null) {
+            return "ERROR";
+        }
+
         return value.toString();
     }
 
@@ -39,17 +52,24 @@ public abstract class Node implements NodeSubscriber {
         if (!evaluated) {
             evaluate();
         }
+
+        if (errorMessage != null) {
+            throw new RuntimeException(errorMessage);
+        }
+
         return value;
     }
 
     protected void setValue(BigFrac value) {
         this.value = value;
+        this.errorMessage = null;
         this.evaluated = true;
     }
 
     public void invalidate() {
         if (evaluated) {
             evaluated = false;
+            errorMessage = null;
             notifySubscribers();
         }
     }
