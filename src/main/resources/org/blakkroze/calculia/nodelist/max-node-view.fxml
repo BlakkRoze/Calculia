@@ -45,7 +45,7 @@ fx:controller="org.blakkroze.calculia.controllers.MaxNodeController">
             <HBox alignment="CENTER_LEFT" spacing="5.0">
                <children>
                   <Label minWidth="-Infinity" text="Node 1:" />
-                  <TextField fx:id="leftArgNodeId" />
+                  <TextField onAction="#onLeftArgChanged" fx:id="leftArgNodeId" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />
@@ -54,7 +54,7 @@ fx:controller="org.blakkroze.calculia.controllers.MaxNodeController">
             <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1">
                <children>
                   <Label minWidth="-Infinity" text="Node 2:" />
-                  <TextField fx:id="rightArgNodeId" />
+                  <TextField onAction="#onRightArgChanged" fx:id="rightArgNodeId" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />

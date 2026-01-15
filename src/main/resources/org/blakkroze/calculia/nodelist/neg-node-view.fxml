@@ -36,7 +36,7 @@ fx:controller="org.blakkroze.calculia.controllers.NegNodeController">
       <HBox alignment="CENTER_LEFT" spacing="5.0">
          <children>
             <Label minWidth="-Infinity" text="Node 1:" />
-            <TextField fx:id="argNodeId" />
+            <TextField onAction="#onArgChanged" fx:id="argNodeId" />
          </children>
          <padding>
             <Insets left="5.0" right="5.0" />
