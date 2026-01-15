@@ -3,6 +3,7 @@ package org.blakkroze.calculia.models;
 import java.math.BigInteger;
 
 public class BigFrac {
+
     private BigInteger top;
     private BigInteger bottom;
 
@@ -23,6 +24,7 @@ public class BigFrac {
             this.bottom = this.bottom.negate();
         }
     }
+
 
     public BigInteger getTop() { return top; }
     public BigInteger getBottom() { return bottom; }
@@ -64,4 +66,33 @@ public class BigFrac {
         }
         return top + "/" + bottom;
     }
+
+    public static BigFrac parseBigFrac(String str) {
+
+        str = str.trim();
+
+        int slashId = str.indexOf('/');
+
+        if (slashId != -1) {
+
+            String firstHalf = str.substring(0, slashId);
+            String secondHalf = str.substring(slashId + 1);
+
+            BigInteger top = new BigInteger(firstHalf);
+            BigInteger bot = new BigInteger(secondHalf);
+
+            return new BigFrac(top, bot);
+
+        }
+
+        else {
+         
+            BigInteger top = new BigInteger(str);
+
+            return new BigFrac(top, BigInteger.valueOf(1));
+
+        }
+
+    }
+
 }
