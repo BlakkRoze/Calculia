@@ -59,4 +59,11 @@ public class NodeListController {
 
     }
 
+    public void evaluateAllNodes() {
+        for (Node node : nodes.getAllNodes()) {
+            if( !node.isEvaluated() )
+                node.evaluate();
+        }
+        nodeListView.refresh();
+    }
 }

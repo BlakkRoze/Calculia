@@ -70,7 +70,8 @@ public abstract class Node implements NodeSubscriber {
 
     @Override
     public void update() {
-        invalidate();
+        if(evaluated)
+            invalidate();
     }
 
     public abstract void evaluate();
