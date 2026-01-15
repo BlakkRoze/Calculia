@@ -36,7 +36,7 @@ public class NodeListController {
         addNode(valNode2);
 
         nodeListView.setItems(observableNodes);
-        nodeListView.setCellFactory(_ -> new NodeView(nodes));
+        nodeListView.setCellFactory(_ -> new NodeView(nodes, nodeListView));
     }
 
     public void addNode(Node node) {

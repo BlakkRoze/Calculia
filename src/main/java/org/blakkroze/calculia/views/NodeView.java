@@ -5,6 +5,7 @@ import org.blakkroze.calculia.containers.NodeContainer;
 import javafx.scene.control.ListCell;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListView;
 
 import org.blakkroze.calculia.controllers.AddNodeController;
 import org.blakkroze.calculia.controllers.DivNodeController;
@@ -45,7 +46,11 @@ public class NodeView extends ListCell<Node> {
     private final Parent valGraphicContainer;
     ValNodeController valController;
 
-    public NodeView(NodeContainer container) {
+    private final ListView<Node> listView;
+
+    public NodeView(NodeContainer container, ListView<Node> listView) {
+
+        this.listView = listView;
 
         FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("../nodelist/add-node-view.fxml"));
         FXMLLoader subNodeLoader = new FXMLLoader(getClass().getResource("../nodelist/sub-node-view.fxml"));
@@ -104,6 +109,7 @@ public class NodeView extends ListCell<Node> {
         }
         else {
             if (node instanceof AddNode addNode) {
+                addController.setListView(listView);
                 addController.setNode(addNode);
                 addController.setId(node.getId());
                 addController.setLeftArgNode(addNode.getLeftArgNode());
@@ -117,6 +123,7 @@ public class NodeView extends ListCell<Node> {
             }
 
             if (node instanceof SubNode subNode) {
+                subController.setListView(listView);
                 subController.setNode(subNode);
                 subController.setId(node.getId());
                 subController.setLeftArgNode(subNode.getLeftArgNode());
@@ -130,6 +137,7 @@ public class NodeView extends ListCell<Node> {
             }
 
             if (node instanceof MulNode mulNode) {
+                mulController.setListView(listView);
                 mulController.setNode(mulNode);
                 mulController.setId(node.getId());
                 mulController.setLeftArgNode(mulNode.getLeftArgNode());
@@ -143,6 +151,7 @@ public class NodeView extends ListCell<Node> {
             }
 
             if (node instanceof DivNode divNode) {
+                divController.setListView(listView);
                 divController.setNode(divNode);
                 divController.setId(node.getId());
                 divController.setLeftArgNode(divNode.getLeftArgNode());
@@ -156,6 +165,7 @@ public class NodeView extends ListCell<Node> {
             }
 
             if (node instanceof MinNode minNode) {
+                minController.setListView(listView);
                 minController.setNode(minNode);
                 minController.setId(node.getId());
                 minController.setLeftArgNode(minNode.getLeftArgNode());
@@ -169,6 +179,7 @@ public class NodeView extends ListCell<Node> {
             }
 
             if (node instanceof MaxNode maxNode) {
+                maxController.setListView(listView);
                 maxController.setNode(maxNode);
                 maxController.setId(node.getId());
                 maxController.setLeftArgNode(maxNode.getLeftArgNode());
@@ -182,6 +193,7 @@ public class NodeView extends ListCell<Node> {
             }
 
             if (node instanceof NegNode negNode) {
+                negController.setListView(listView);
                 negController.setNode(negNode);
                 negController.setId(node.getId());
                 negController.setArgNode(negNode.getArgNode());
@@ -194,6 +206,7 @@ public class NodeView extends ListCell<Node> {
             }
 
             if (node instanceof ValNode valNode) {
+                valController.setListView(listView);
                 //valController.setNode(valNode);
                 valController.setId(node.getId());
                 valController.setValue(node.getValue());

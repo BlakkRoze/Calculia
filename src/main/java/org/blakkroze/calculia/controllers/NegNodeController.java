@@ -3,6 +3,7 @@ package org.blakkroze.calculia.controllers;
 import org.blakkroze.calculia.containers.NodeContainer;
 import org.blakkroze.calculia.nodes.NegNode;
 import org.blakkroze.calculia.nodes.Node;
+import javafx.scene.control.ListView;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
@@ -19,9 +20,14 @@ public class NegNodeController {
 
     private NegNode negNode;
     private NodeContainer container;
+    private ListView<Node> listView;
 
     public void setId(String id) {
         nodeId.setText(id);
+    }
+
+    public void setListView(ListView<Node> listView) {
+        this.listView = listView;
     }
 
     public void setArgNode(Node node) {
@@ -67,6 +73,9 @@ public class NegNodeController {
         } catch (NumberFormatException _) {
 
         }
+
+        listView.refresh();
+
     }
 
 }
