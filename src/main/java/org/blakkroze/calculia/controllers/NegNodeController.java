@@ -42,31 +42,31 @@ public class NegNodeController {
 
     public void setContainer(NodeContainer container) {
         this.container = container;
-        setupListeners();
     }
 
-    private void setupListeners() {
-        argNodeId.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (negNode == null || container == null) return;
+    public void onArgChanged() {
 
-            try {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    if (negNode.getArgNode() != null) {
-                        negNode.getArgNode().unsubscribe(negNode);
-                    }
-                    return;
+        String newValue = argNodeId.getText();
+
+        if (negNode == null || container == null) return;
+
+        try {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                if (negNode.getArgNode() != null) {
+                    negNode.getArgNode().unsubscribe(negNode);
                 }
-
-                int nodeId = Integer.parseInt(newValue.trim());
-                Node newArg = container.get(nodeId);
-
-                if (newArg != null && newArg != negNode) {
-                    negNode.setFather(newArg);
-                }
-            } catch (NumberFormatException _) {
-
+                return;
             }
-        });
+
+            int nodeId = Integer.parseInt(newValue.trim());
+            Node newArg = container.get(nodeId);
+
+            if (newArg != null && newArg != negNode) {
+                negNode.setFather(newArg);
+            }
+        } catch (NumberFormatException _) {
+
+        }
     }
 
 }

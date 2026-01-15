@@ -52,52 +52,58 @@ public class MinNodeController {
 
     public void setContainer(NodeContainer container) {
         this.container = container;
-        setupListeners();
     }
 
-    private void setupListeners() {
-        leftArgNodeId.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (currNode == null || container == null) return;
 
-            try {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    if (currNode.getLeftArgNode() != null) {
-                        currNode.getLeftArgNode().unsubscribe(currNode);
-                    }
-                    return;
+    public void onLeftArgChanged() {
+        
+        String newValue = leftArgNodeId.getText();
+
+        if (currNode == null || container == null) return;
+
+        try {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                if (currNode.getLeftArgNode() != null) {
+                    currNode.getLeftArgNode().unsubscribe(currNode);
                 }
-
-                int nodeId = Integer.parseInt(newValue.trim());
-                Node newLeft = container.get(nodeId);
-
-                if (newLeft != null && newLeft != currNode) {
-                    currNode.setLeft(newLeft);
-                }
-            } catch (NumberFormatException _) {
+                return;
             }
-        });
 
-        rightArgNodeId.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (currNode == null || container == null) return;
+            int nodeId = Integer.parseInt(newValue.trim());
+            Node newLeft = container.get(nodeId);
 
-            try {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    if (currNode.getRightArgNode() != null) {
-                        currNode.getRightArgNode().unsubscribe(currNode);
-                    }
-                    return;
-                }
-
-                int nodeId = Integer.parseInt(newValue.trim());
-                Node newRight = container.get(nodeId);
-
-                if (newRight != null && newRight != currNode) {
-                    currNode.setRight(newRight);
-                }
-            } catch (NumberFormatException _) {
-
+            if (newLeft != null && newLeft != currNode) {
+                currNode.setLeft(newLeft);
             }
-        });
+        }
+        catch (NumberFormatException _) {
+        }
     }
+
+    public void onRightArgChanged() {
+
+        String newValue = rightArgNodeId.getText();
+
+        if (currNode == null || container == null) return;
+
+        try {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                if (currNode.getRightArgNode() != null) {
+                    currNode.getRightArgNode().unsubscribe(currNode);
+                }
+                return;
+            }
+
+            int nodeId = Integer.parseInt(newValue.trim());
+            Node newRight = container.get(nodeId);
+
+            if (newRight != null && newRight != currNode) {
+                currNode.setRight(newRight);
+            }
+        }
+        catch (NumberFormatException _) {
+        }
+    }
+
 
 }
