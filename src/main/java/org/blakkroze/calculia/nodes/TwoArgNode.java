@@ -15,7 +15,7 @@ public abstract class TwoArgNode extends Node {
         right.subscribe(this);
     }
 
-    public void SetLeft(Node newLeft) {
+    public void setLeft(Node newLeft) {
         if(this.left != null){
             this.left.invalidate();
             this.left.unsubscribe(this);
@@ -25,7 +25,7 @@ public abstract class TwoArgNode extends Node {
         this.invalidate();
     }
 
-    public void SetRight(Node newRight) {
+    public void setRight(Node newRight) {
         if(this.right != null) {
             this.right.unsubscribe(this);
             this.right.invalidate();
