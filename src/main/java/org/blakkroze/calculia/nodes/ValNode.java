@@ -16,7 +16,7 @@ public class ValNode extends Node {
 
     public void setFracValue(BigFrac value) {
         this.fracValue = value;
-        invalidate();
+        this.update();
     }
 
     @Override
