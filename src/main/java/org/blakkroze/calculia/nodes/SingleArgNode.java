@@ -15,7 +15,6 @@ public abstract class SingleArgNode extends Node {
 
     public void setFather(Node newFather) {
         if(this.father != null) {
-            this.father.invalidate();
             this.father.unsubscribe(this);
         }
         this.father = newFather;
