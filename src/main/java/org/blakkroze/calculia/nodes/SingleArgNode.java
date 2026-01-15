@@ -13,7 +13,7 @@ public abstract class SingleArgNode extends Node {
         father.subscribe(this);
     }
 
-    public void SetFather(Node newFather) {
+    public void setFather(Node newFather) {
         if(this.father != null) {
             this.father.invalidate();
             this.father.unsubscribe(this);
