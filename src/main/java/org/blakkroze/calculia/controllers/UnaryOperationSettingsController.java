@@ -30,8 +30,8 @@ public class UnaryOperationSettingsController implements OperationSettingsContro
         String nodeIdStr = nodeIdField.getText();
         String inputIdStr = inputIdField.getText();
 
-        Integer nodeId;
-        Integer inputId;
+        int nodeId;
+        int inputId;
 
         try {
             nodeId = Integer.parseInt(nodeIdStr);
@@ -71,7 +71,7 @@ public class UnaryOperationSettingsController implements OperationSettingsContro
             return false;
         }
 
-        node.SetFather(father);
+        node.setFather(father);
         node.setId(nodeId);
 
         return true;

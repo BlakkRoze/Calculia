@@ -1,5 +1,7 @@
 package org.blakkroze.calculia.controllers;
 
+import org.blakkroze.calculia.containers.NodeContainer;
+import org.blakkroze.calculia.nodes.MaxNode;
 import org.blakkroze.calculia.nodes.Node;
 
 import javafx.fxml.FXML;
@@ -16,6 +18,9 @@ public class MaxNodeController {
     public TextField rightArgNodeId;
     @FXML
     public Text nodeResult;
+
+    private MaxNode currNode;
+    private NodeContainer container;
 
     public void setId(String id) {
         nodeId.setText(id);
@@ -39,6 +44,61 @@ public class MaxNodeController {
 
     public void setValue(String value) {
         nodeResult.setText(value);
+    }
+
+    public void setNode(MaxNode node) {
+        this.currNode = node;
+    }
+
+    public void setContainer(NodeContainer container) {
+        this.container = container;
+        setupListeners();
+    }
+
+    private void setupListeners() {
+        leftArgNodeId.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (currNode == null || container == null) return;
+
+            try {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    if (currNode.getLeftArgNode() != null) {
+                        currNode.getLeftArgNode().unsubscribe(currNode);
+                    }
+                    return;
+                }
+
+                int nodeId = Integer.parseInt(newValue.trim());
+                Node newLeft = container.get(nodeId);
+
+                if (newLeft != null && newLeft != currNode) {
+                    currNode.setLeft(newLeft);
+                }
+            } catch (NumberFormatException _) {
+
+            }
+        });
+
+        rightArgNodeId.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (currNode == null || container == null) return;
+
+            try {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    if (currNode.getRightArgNode() != null) {
+                        currNode.getRightArgNode().unsubscribe(currNode);
+                    }
+                    return;
+                }
+
+                int nodeId = Integer.parseInt(newValue.trim());
+                Node newRight = container.get(nodeId);
+
+                if (newRight != null && newRight != currNode) {
+                    currNode.setRight(newRight);
+                }
+            } catch (NumberFormatException _) {
+
+            }
+        });
     }
 
 }
