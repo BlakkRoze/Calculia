@@ -1,5 +1,7 @@
 package org.blakkroze.calculia.nodes;
 
+import org.blakkroze.calculia.utils.CycleDetector;
+
 public abstract class TwoArgNode extends Node {
     protected Node left, right;
 
@@ -16,6 +18,9 @@ public abstract class TwoArgNode extends Node {
     }
 
     public void setLeft(Node newLeft) {
+        if (CycleDetector.wouldCreateCycle(this, newLeft)) {
+            throw new IllegalArgumentException("Cannot set left node: would create a cycle");
+        }
         if(this.left != null){
             this.left.unsubscribe(this);
         }
@@ -25,6 +30,9 @@ public abstract class TwoArgNode extends Node {
     }
 
     public void setRight(Node newRight) {
+        if (CycleDetector.wouldCreateCycle(this, newRight)) {
+            throw new IllegalArgumentException("Cannot set left node: would create a cycle");
+        }
         if(this.right != null) {
             this.right.unsubscribe(this);
         }
