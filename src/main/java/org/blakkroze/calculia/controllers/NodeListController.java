@@ -26,15 +26,6 @@ public class NodeListController {
 
         observableNodes = FXCollections.observableArrayList();
 
-        ValNode valNode1 = new ValNode(new BigFrac(2137, 2));
-        valNode1.setId(0);
-
-        ValNode valNode2 = new ValNode(new BigFrac(2137, 1));
-        valNode2.setId(1);
-
-        addNode(valNode1);
-        addNode(valNode2);
-
         nodeListView.setItems(observableNodes);
         nodeListView.setCellFactory(_ -> new NodeView(nodes, nodeListView));
     }
