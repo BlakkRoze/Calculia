@@ -19,9 +19,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Alert;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import java.io.IOException;
 
 public class NewNodeController {
@@ -45,80 +47,82 @@ public class NewNodeController {
     @FXML
     public void initialize() {
 
-       operationComboBox.getItems().add(new AddNode());
-       operationComboBox.getItems().add(new SubNode());
-       operationComboBox.getItems().add(new MulNode());
-       operationComboBox.getItems().add(new DivNode());
-       operationComboBox.getItems().add(new MinNode());
-       operationComboBox.getItems().add(new MaxNode());
-       operationComboBox.getItems().add(new NegNode());
-       operationComboBox.getItems().add(new ValNode());
-       
+        operationComboBox.getItems().add(new AddNode());
+        operationComboBox.getItems().add(new SubNode());
+        operationComboBox.getItems().add(new MulNode());
+        operationComboBox.getItems().add(new DivNode());
+        operationComboBox.getItems().add(new MinNode());
+        operationComboBox.getItems().add(new MaxNode());
+        operationComboBox.getItems().add(new NegNode());
+        operationComboBox.getItems().add(new ValNode());
 
-       operationComboBox.setCellFactory(lv -> new ListCell<Node>() {
+        Callback<ListView<Node>, ListCell<Node>> cellFactory = lv -> new ListCell<Node>() {
 
-           @Override
-           protected void updateItem(Node node, boolean empty) {
+            @Override
+            protected void updateItem(Node node, boolean empty) {
 
-               super.updateItem(node, empty);
+                super.updateItem(node, empty);
 
-               if (empty || node == null) {
-                   setGraphic(null);
-               }
-               else {
-                   FXMLLoader loader;
-                   Parent cellView;
+                if (empty || node == null) {
+                    setGraphic(null);
+                }
+                else {
+                    FXMLLoader loader;
+                    Parent cellView;
 
-                   if (node instanceof AddNode addNode) {
-                   loader = new FXMLLoader(getClass().getResource("../newnode/add-node-combo-view.fxml"));
-                   }
+                    if (node instanceof AddNode addNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/add-node-combo-view.fxml"));
+                    }
 
-                   else if (node instanceof SubNode subNode) {
-                   loader = new FXMLLoader(getClass().getResource("../newnode/sub-node-combo-view.fxml"));
-                   }
+                    else if (node instanceof SubNode subNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/sub-node-combo-view.fxml"));
+                    }
 
-                   else if (node instanceof MulNode mulNode) {
-                       loader = new FXMLLoader(getClass().getResource("../newnode/mul-node-combo-view.fxml"));
-                   }
+                    else if (node instanceof MulNode mulNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/mul-node-combo-view.fxml"));
+                    }
 
-                   else if (node instanceof DivNode divNode) {
-                       loader = new FXMLLoader(getClass().getResource("../newnode/div-node-combo-view.fxml"));
-                   }
+                    else if (node instanceof DivNode divNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/div-node-combo-view.fxml"));
+                    }
 
-                   else if (node instanceof MinNode minNode) {
-                       loader = new FXMLLoader(getClass().getResource("../newnode/min-node-combo-view.fxml"));
-                   }
+                    else if (node instanceof MinNode minNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/min-node-combo-view.fxml"));
+                    }
 
-                   else if (node instanceof MaxNode maxNode) {
-                       loader = new FXMLLoader(getClass().getResource("../newnode/max-node-combo-view.fxml"));
-                   }
+                    else if (node instanceof MaxNode maxNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/max-node-combo-view.fxml"));
+                    }
 
-                   else if (node instanceof NegNode negNode) {
-                       loader = new FXMLLoader(getClass().getResource("../newnode/neg-node-combo-view.fxml"));
-                   }
+                    else if (node instanceof NegNode negNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/neg-node-combo-view.fxml"));
+                    }
 
-                   else if (node instanceof ValNode valNode) {
-                       loader = new FXMLLoader(getClass().getResource("../newnode/val-node-combo-view.fxml"));
-                   }
+                    else if (node instanceof ValNode valNode) {
+                        loader = new FXMLLoader(getClass().getResource("../newnode/val-node-combo-view.fxml"));
+                    }
 
-                   else {
-                       throw new RuntimeException("NewNodeController: Unsupported node type!");
-                   }
+                    else {
+                        throw new RuntimeException("NewNodeController: Unsupported node type!");
+                    }
 
-                   try {
-                       cellView = loader.load();
-                   }
-                   catch (IOException e) {
-                       throw new RuntimeException("NewNodeController: Couldn't load the FXML file", e);
-                   }
+                    try {
+                        cellView = loader.load();
+                    }
+                    catch (IOException e) {
+                        throw new RuntimeException("NewNodeController: Couldn't load the FXML file", e);
+                    }
 
-                   setGraphic(cellView);
+                    setGraphic(cellView);
 
-               }
+                }
 
             }
 
-        });
+        };
+
+        operationComboBox.setCellFactory(cellFactory);
+        operationComboBox.setButtonCell(cellFactory.call(null));
 
     }
 

@@ -24,7 +24,7 @@
                 <FontIcon iconLiteral="fas-tag" />
             </children>
         </StackPane>
-        <HBox alignment="CENTER_LEFT" spacing="5.0">
+        <HBox prefHeight="30.0" alignment="CENTER_LEFT" spacing="5.0">
             <children>
                 <FontIcon iconLiteral="fas-hashtag" />
                 <Text fx:id="nodeId" strokeType="OUTSIDE" strokeWidth="0.0" text="?" />
