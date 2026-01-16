@@ -107,9 +107,6 @@ Results are automatically simplified to lowest terms.
 # Clean and compile
 mvn clean compile
 
-# Run tests (if available)
-mvn test
-
 # Package as JAR
 mvn package
 
