@@ -48,7 +48,7 @@ A node-based calculator application built with JavaFX that allows users to creat
    mvn javafx:run
    ```
 
-## Alternative: Run from .jar
+### Alternative: Run from .jar
 ```bash
 java --module-path /path/to/javafx-sdk/lib --add-modules javafx.controls,javafx.fxml -jar target/Calculia-0.1.jar
 ```
