@@ -89,6 +89,35 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <artifactId>plantuml-generator-maven-plugin</artifactId>
+                <groupId>de.elnarion.maven</groupId>
+                <version>1.1.2</version>
+                <configuration>
+                    <outputFilename>diagram.txt</outputFilename>
+                    <outputDirectory>${project.basedir}/target/plantuml</outputDirectory>
+                    <scanPackages>
+                        <scanPackage>org.blakkroze.calculia</scanPackage>
+                    </scanPackages>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-diagram</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-test-sources</phase>
+                        <configuration>
+                            <outputFilename>diagram.txt</outputFilename>
+                            <outputDirectory>${project.basedir}/target/plantuml</outputDirectory>
+                            <scanPackages>
+                                <scanPackage>org.blakkroze.calculia</scanPackage>
+                            </scanPackages>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
