@@ -1,0 +1,391 @@
+@startuml
+
+!pragma layout elk
+skinparam linetype ortho
+skinparam nodesep 80
+skinparam ranksep 80
+
+class org.blakkroze.calculia.Calculia {
+	{method} +start ( paramStage1 : javafx.stage.Stage ) : void
+}
+
+
+class org.blakkroze.calculia.Launcher {
+	{method}  {static} +main ( paramString;1 : [Ljava.lang.String; ) : void
+}
+
+
+class org.blakkroze.calculia.containers.NodeContainer {
+	{field} -nodes : java.util.Map
+	{method} +add ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +delete ( paramint1 : int ) : void
+	{method} +get ( paramint1 : int ) : org.blakkroze.calculia.nodes.Node
+	{method} +getAllNodes () : java.util.List
+}
+
+
+class org.blakkroze.calculia.controllers.AddNodeController {
+	{field} +leftArgNodeId : javafx.scene.control.TextField
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{field} +rightArgNodeId : javafx.scene.control.TextField
+	{method} +onLeftArgChanged () : void
+	{method} +onRightArgChanged () : void
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setLeftArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setNode ( paramAddNode1 : org.blakkroze.calculia.nodes.AddNode ) : void
+	{method} +setRightArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setValue ( paramString1 : String ) : void
+	{method} -showCycleError () : void
+}
+
+
+class org.blakkroze.calculia.controllers.BinaryOperationSettingsController {
+	{field} ~input1IdField : javafx.scene.control.TextField
+	{field} ~input2IdField : javafx.scene.control.TextField
+	{field} ~nodeIdField : javafx.scene.control.TextField
+	{method} +fillNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : boolean
+	{method} +fillNode ( paramTwoArgNode1 : org.blakkroze.calculia.nodes.TwoArgNode ) : boolean
+	{method} +setContainer ( paramNodeContainer1 : org.blakkroze.calculia.containers.NodeContainer ) : void
+	{method} +showInput1IdInvalid () : void
+	{method} +showInput1IdNotPresent () : void
+	{method} +showInput2IdInvalid () : void
+	{method} +showInput2IdNotPresent () : void
+	{method} +showNodeIdInvalid () : void
+	{method} +showNodeIdPresent () : void
+}
+
+
+class org.blakkroze.calculia.controllers.CalculiaController {
+	{field} +nodeList : javafx.scene.Parent
+	{method} +handleAddNode ( paramActionEvent1 : javafx.event.ActionEvent ) : void
+	{method} +handleEvaluation ( paramActionEvent1 : javafx.event.ActionEvent ) : void
+}
+
+
+class org.blakkroze.calculia.controllers.DivNodeController {
+	{field} +leftArgNodeId : javafx.scene.control.TextField
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{field} +rightArgNodeId : javafx.scene.control.TextField
+	{method} +onLeftArgChanged () : void
+	{method} +onRightArgChanged () : void
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setLeftArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setNode ( paramDivNode1 : org.blakkroze.calculia.nodes.DivNode ) : void
+	{method} +setRightArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setValue ( paramString1 : String ) : void
+	{method} -showCycleError () : void
+	{method} -showDivisionByZeroError () : void
+}
+
+
+class org.blakkroze.calculia.controllers.FileMenuController {
+	{method} +handleClose ( paramActionEvent1 : javafx.event.ActionEvent ) : void
+}
+
+
+class org.blakkroze.calculia.controllers.MaxNodeController {
+	{field} +leftArgNodeId : javafx.scene.control.TextField
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{field} +rightArgNodeId : javafx.scene.control.TextField
+	{method} +onLeftArgChanged () : void
+	{method} +onRightArgChanged () : void
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setLeftArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setNode ( paramMaxNode1 : org.blakkroze.calculia.nodes.MaxNode ) : void
+	{method} +setRightArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setValue ( paramString1 : String ) : void
+	{method} -showCycleError () : void
+}
+
+
+class org.blakkroze.calculia.controllers.MinNodeController {
+	{field} +leftArgNodeId : javafx.scene.control.TextField
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{field} +rightArgNodeId : javafx.scene.control.TextField
+	{method} +onLeftArgChanged () : void
+	{method} +onRightArgChanged () : void
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setLeftArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setNode ( paramMinNode1 : org.blakkroze.calculia.nodes.MinNode ) : void
+	{method} +setRightArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setValue ( paramString1 : String ) : void
+	{method} -showCycleError () : void
+}
+
+
+class org.blakkroze.calculia.controllers.MulNodeController {
+	{field} +leftArgNodeId : javafx.scene.control.TextField
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{field} +rightArgNodeId : javafx.scene.control.TextField
+	{method} +onLeftArgChanged () : void
+	{method} +onRightArgChanged () : void
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setLeftArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setNode ( paramMulNode1 : org.blakkroze.calculia.nodes.MulNode ) : void
+	{method} +setRightArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setValue ( paramString1 : String ) : void
+	{method} -showCycleError () : void
+}
+
+
+class org.blakkroze.calculia.controllers.NegNodeController {
+	{field} +argNodeId : javafx.scene.control.TextField
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{method} +onArgChanged () : void
+	{method} +setArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setNode ( paramNegNode1 : org.blakkroze.calculia.nodes.NegNode ) : void
+	{method} +setValue ( paramString1 : String ) : void
+	{method} -showCycleError () : void
+}
+
+
+class org.blakkroze.calculia.controllers.NewNodeController {
+	{field} ~operationComboBox : javafx.scene.control.ComboBox
+	{field} ~settingsPane : javafx.scene.layout.StackPane
+	{method} +handleComboSelection ( paramActionEvent1 : javafx.event.ActionEvent ) : void
+	{method} +handleOk ( paramActionEvent1 : javafx.event.ActionEvent ) : void
+	{method} +initialize () : void
+	{method} -lambda$initialize$0 ( paramListView1 : javafx.scene.control.ListView ) : javafx.scene.control.ListCell
+	{method} +showOperationNotSet () : void
+}
+
+
+class org.blakkroze.calculia.controllers.NewNodeController$1 {
+	{method} #updateItem ( paramObject1 : Object , paramboolean2 : boolean ) : void
+	{method} #updateItem ( paramNode1 : org.blakkroze.calculia.nodes.Node , paramboolean2 : boolean ) : void
+}
+
+
+class org.blakkroze.calculia.controllers.NodeListController {
+	{field} +nodeListView : javafx.scene.control.ListView
+	{field} -observableNodes : javafx.collections.ObservableList
+	{method} +addNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +evaluateAllNodes () : void
+	{method} +initialize () : void
+	{method} -lambda$initialize$0 ( paramListView1 : javafx.scene.control.ListView ) : javafx.scene.control.ListCell
+}
+
+
+interface org.blakkroze.calculia.controllers.OperationSettingsController {
+	{method}  {abstract} +fillNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : boolean
+	{method}  {abstract} +setContainer ( paramNodeContainer1 : org.blakkroze.calculia.containers.NodeContainer ) : void
+}
+
+
+class org.blakkroze.calculia.controllers.SubNodeController {
+	{field} +leftArgNodeId : javafx.scene.control.TextField
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{field} +rightArgNodeId : javafx.scene.control.TextField
+	{method} +onLeftArgChanged () : void
+	{method} +onRightArgChanged () : void
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setLeftArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setNode ( paramSubNode1 : org.blakkroze.calculia.nodes.SubNode ) : void
+	{method} +setRightArgNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : void
+	{method} +setValue ( paramString1 : String ) : void
+	{method} -showCycleError () : void
+}
+
+
+class org.blakkroze.calculia.controllers.UnaryOperationSettingsController {
+	{field} ~inputIdField : javafx.scene.control.TextField
+	{field} ~nodeIdField : javafx.scene.control.TextField
+	{method} +fillNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : boolean
+	{method} +fillNode ( paramSingleArgNode1 : org.blakkroze.calculia.nodes.SingleArgNode ) : boolean
+	{method} +setContainer ( paramNodeContainer1 : org.blakkroze.calculia.containers.NodeContainer ) : void
+	{method} +showFatherIdInvalid () : void
+	{method} +showFatherIdNotPresent () : void
+	{method} +showNodeIdInvalid () : void
+	{method} +showNodeIdPresent () : void
+}
+
+
+class org.blakkroze.calculia.controllers.ValNodeController {
+	{field} +nodeId : javafx.scene.text.Text
+	{field} +nodeResult : javafx.scene.text.Text
+	{method} +setId ( paramString1 : String ) : void
+	{method} +setValue ( paramString1 : String ) : void
+}
+
+
+class org.blakkroze.calculia.controllers.ValueOperationSettingsController {
+	{field} ~nodeIdField : javafx.scene.control.TextField
+	{field} ~valueField : javafx.scene.control.TextField
+	{method} +fillNode ( paramNode1 : org.blakkroze.calculia.nodes.Node ) : boolean
+	{method} +fillNode ( paramValNode1 : org.blakkroze.calculia.nodes.ValNode ) : boolean
+	{method} +setContainer ( paramNodeContainer1 : org.blakkroze.calculia.containers.NodeContainer ) : void
+	{method} +showNodeIdInvalid () : void
+	{method} +showNodeIdPresent () : void
+	{method} +showValueInvalid () : void
+}
+
+
+class org.blakkroze.calculia.models.BigFrac {
+	{field} -bottom : java.math.BigInteger
+	{field} -top : java.math.BigInteger
+	{method} +add ( paramBigFrac1 : org.blakkroze.calculia.models.BigFrac ) : org.blakkroze.calculia.models.BigFrac
+	{method} +compareTo ( paramBigFrac1 : org.blakkroze.calculia.models.BigFrac ) : int
+	{method} +divide ( paramBigFrac1 : org.blakkroze.calculia.models.BigFrac ) : org.blakkroze.calculia.models.BigFrac
+	{method} +multiply ( paramBigFrac1 : org.blakkroze.calculia.models.BigFrac ) : org.blakkroze.calculia.models.BigFrac
+	{method} +negate () : org.blakkroze.calculia.models.BigFrac
+	{method}  {static} +parseBigFrac ( paramString1 : String ) : org.blakkroze.calculia.models.BigFrac
+	{method} +subtract ( paramBigFrac1 : org.blakkroze.calculia.models.BigFrac ) : org.blakkroze.calculia.models.BigFrac
+	{method} +toString () : String
+}
+
+
+class org.blakkroze.calculia.nodes.AddNode {
+	{method} +evaluate () : void
+}
+
+
+class org.blakkroze.calculia.nodes.DivNode {
+	{field} -errorCallback : Runnable
+	{method} +evaluate () : void
+}
+
+
+class org.blakkroze.calculia.nodes.MaxNode {
+	{method} +evaluate () : void
+}
+
+
+class org.blakkroze.calculia.nodes.MinNode {
+	{method} +evaluate () : void
+}
+
+
+class org.blakkroze.calculia.nodes.MulNode {
+	{method} +evaluate () : void
+}
+
+
+class org.blakkroze.calculia.nodes.NegNode {
+	{method} +evaluate () : void
+}
+
+
+abstract class org.blakkroze.calculia.nodes.Node {
+	{field} -errorMessage : String
+	{field} -evaluated : boolean
+	{field} +id : int
+	{method}  {abstract} +evaluate () : void
+	{method} +getBigFracValue () : org.blakkroze.calculia.models.BigFrac
+	{method} +getIntId () : int
+	{method} +invalidate () : void
+	{method} -notifySubscribers () : void
+	{method} +subscribe ( paramNodeSubscriber1 : org.blakkroze.calculia.nodes.NodeSubscriber ) : void
+	{method} +unsubscribe ( paramNodeSubscriber1 : org.blakkroze.calculia.nodes.NodeSubscriber ) : void
+	{method} +update () : void
+}
+
+
+interface org.blakkroze.calculia.nodes.NodeSubscriber {
+	{method}  {abstract} +update () : void
+}
+
+
+abstract class org.blakkroze.calculia.nodes.SingleArgNode {
+	{method} +getArgNode () : org.blakkroze.calculia.nodes.Node
+}
+
+
+class org.blakkroze.calculia.nodes.SubNode {
+	{method} +evaluate () : void
+}
+
+
+abstract class org.blakkroze.calculia.nodes.TwoArgNode {
+	{method} +getLeftArgNode () : org.blakkroze.calculia.nodes.Node
+	{method} +getRightArgNode () : org.blakkroze.calculia.nodes.Node
+}
+
+
+class org.blakkroze.calculia.nodes.ValNode {
+	{method} +evaluate () : void
+}
+
+
+class org.blakkroze.calculia.utils.CycleDetector {
+	{method}  {static} -hasCycle ( paramNode1 : org.blakkroze.calculia.nodes.Node , paramNode2 : org.blakkroze.calculia.nodes.Node , paramSet3 : java.util.Set ) : boolean
+	{method}  {static} +wouldCreateCycle ( paramNode1 : org.blakkroze.calculia.nodes.Node , paramNode2 : org.blakkroze.calculia.nodes.Node ) : boolean
+}
+
+
+class org.blakkroze.calculia.views.NodeView {
+	{field} -addGraphicContainer : javafx.scene.Parent
+	{field} -divGraphicContainer : javafx.scene.Parent
+	{field} -maxGraphicContainer : javafx.scene.Parent
+	{field} -minGraphicContainer : javafx.scene.Parent
+	{field} -mulGraphicContainer : javafx.scene.Parent
+	{field} -negGraphicContainer : javafx.scene.Parent
+	{field} -subGraphicContainer : javafx.scene.Parent
+	{field} -valGraphicContainer : javafx.scene.Parent
+	{method} #updateItem ( paramObject1 : Object , paramboolean2 : boolean ) : void
+	{method} #updateItem ( paramNode1 : org.blakkroze.calculia.nodes.Node , paramboolean2 : boolean ) : void
+}
+
+
+
+
+org.blakkroze.calculia.controllers.AddNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.AddNodeController -->  org.blakkroze.calculia.nodes.AddNode : currNode
+org.blakkroze.calculia.controllers.BinaryOperationSettingsController -->  org.blakkroze.calculia.containers.NodeContainer : nodes
+org.blakkroze.calculia.controllers.BinaryOperationSettingsController ..|>  org.blakkroze.calculia.controllers.OperationSettingsController
+org.blakkroze.calculia.controllers.CalculiaController -->  org.blakkroze.calculia.controllers.NodeListController : nodeListController
+org.blakkroze.calculia.controllers.DivNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.DivNodeController -->  org.blakkroze.calculia.nodes.DivNode : currNode
+org.blakkroze.calculia.controllers.MaxNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.MaxNodeController -->  org.blakkroze.calculia.nodes.MaxNode : currNode
+org.blakkroze.calculia.controllers.MinNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.MinNodeController -->  org.blakkroze.calculia.nodes.MinNode : currNode
+org.blakkroze.calculia.controllers.MulNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.MulNodeController -->  org.blakkroze.calculia.nodes.MulNode : currNode
+org.blakkroze.calculia.controllers.NegNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.NegNodeController -->  org.blakkroze.calculia.nodes.NegNode : negNode
+org.blakkroze.calculia.controllers.NewNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.NewNodeController -->  org.blakkroze.calculia.controllers.OperationSettingsController : operationSettingsController
+org.blakkroze.calculia.controllers.NewNodeController -->  org.blakkroze.calculia.nodes.Node : result
+org.blakkroze.calculia.controllers.NodeListController -->  org.blakkroze.calculia.containers.NodeContainer : nodes
+org.blakkroze.calculia.controllers.SubNodeController -->  org.blakkroze.calculia.containers.NodeContainer : container
+org.blakkroze.calculia.controllers.SubNodeController -->  org.blakkroze.calculia.nodes.SubNode : currNode
+org.blakkroze.calculia.controllers.UnaryOperationSettingsController -->  org.blakkroze.calculia.containers.NodeContainer : nodes
+org.blakkroze.calculia.controllers.UnaryOperationSettingsController ..|>  org.blakkroze.calculia.controllers.OperationSettingsController
+org.blakkroze.calculia.controllers.ValueOperationSettingsController -->  org.blakkroze.calculia.containers.NodeContainer : nodes
+org.blakkroze.calculia.controllers.ValueOperationSettingsController ..|>  org.blakkroze.calculia.controllers.OperationSettingsController
+org.blakkroze.calculia.nodes.AddNode --|>  org.blakkroze.calculia.nodes.TwoArgNode
+org.blakkroze.calculia.nodes.DivNode --|>  org.blakkroze.calculia.nodes.TwoArgNode
+org.blakkroze.calculia.nodes.MaxNode --|>  org.blakkroze.calculia.nodes.TwoArgNode
+org.blakkroze.calculia.nodes.MinNode --|>  org.blakkroze.calculia.nodes.TwoArgNode
+org.blakkroze.calculia.nodes.MulNode --|>  org.blakkroze.calculia.nodes.TwoArgNode
+org.blakkroze.calculia.nodes.NegNode --|>  org.blakkroze.calculia.nodes.SingleArgNode
+org.blakkroze.calculia.nodes.Node "1" o-- "0..*"  org.blakkroze.calculia.nodes.NodeSubscriber : subscribers
+org.blakkroze.calculia.nodes.Node -->  org.blakkroze.calculia.models.BigFrac : value
+org.blakkroze.calculia.nodes.Node ..|>  org.blakkroze.calculia.nodes.NodeSubscriber
+org.blakkroze.calculia.nodes.SingleArgNode -->  org.blakkroze.calculia.nodes.Node : father
+org.blakkroze.calculia.nodes.SingleArgNode --|>  org.blakkroze.calculia.nodes.Node
+org.blakkroze.calculia.nodes.SubNode --|>  org.blakkroze.calculia.nodes.TwoArgNode
+org.blakkroze.calculia.nodes.TwoArgNode -->  org.blakkroze.calculia.nodes.Node : left
+org.blakkroze.calculia.nodes.TwoArgNode -->  org.blakkroze.calculia.nodes.Node : right
+org.blakkroze.calculia.nodes.TwoArgNode --|>  org.blakkroze.calculia.nodes.Node
+org.blakkroze.calculia.nodes.ValNode -->  org.blakkroze.calculia.models.BigFrac : fracValue
+org.blakkroze.calculia.nodes.ValNode --|>  org.blakkroze.calculia.nodes.Node
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.AddNodeController : addController
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.DivNodeController : divController
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.MaxNodeController : maxController
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.MinNodeController : minController
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.MulNodeController : mulController
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.NegNodeController : negController
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.SubNodeController : subController
+org.blakkroze.calculia.views.NodeView -->  org.blakkroze.calculia.controllers.ValNodeController : valController
+
+
+@enduml
